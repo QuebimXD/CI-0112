@@ -63,7 +63,7 @@ public class ArbolMascota{
     }
 
     //Metodo de buscar mascotas por nombre, en este caso lo voy a realizar por el id pues es como ordene el arbol (tengo el visto bueno por el profe :)): 
-    private NodoMascotaABB buscarMascotaIdABBRec(Mascota datoMascota, nodoMascotaABB nodoMascotaBuscadaABB){
+    private NodoMascotaABB buscarMascotaIdABBRec(Mascota datoMascota, NodoMascotaABB nodoMascotaBuscadaABB){
         if(nodoMascotaBuscadaABB == null){
             return null; 
         }else if(datoMascota.getId() == nodoMascotaBuscadaABB.getDatoMascota().getId()){
@@ -76,13 +76,15 @@ public class ArbolMascota{
     }
 
     //Metodo de buscar para llamar en la GUI:
-    public NodoMascotaABB buscarMascotaGui(Mascota datoMascota){
-        return buscarMascotaABBRec(datoMascota, this.raiz);
+    public NodoMascotaABB buscarMascotaGui(int id){
+        Mascota mascotaBuscada = new Mascota(id, "", "");//Vea que el nombre y la especie no son relevantes para el metodo por ello estan rellenos con "".
+
+        return buscarMascotaIdABBRec(mascotaBuscada, this.raiz);
     }
 
     //Metodo para mostrar recorrido: en este caso desarrolle los tres posibles casos en el recorrido de un arbol que serian los inorder, postorden y preorden 
     //Metodo de recorrido, inorden:
-    private String recorridoInordenABBRec(NodoMascotaABB nodoRecorridoABB){
+    private String recorridoInOrdenABBRec(NodoMascotaABB nodoRecorridoABB){
         if(nodoRecorridoABB == null){
             return "";//Vea que aca es necesario retornar un string por ello la utilidad del "". 
         }
@@ -90,15 +92,15 @@ public class ArbolMascota{
         Mascota mascotaNodoRecorrido = nodoRecorridoABB.getDatoMascota();
         
         String salto = System.lineSeparator();
-        return recorridoInordenABBRec(nodoRecorridoABB.getIzquierdo()) +
+        return recorridoInOrdenABBRec(nodoRecorridoABB.getIzquierdo()) +
             mascotaNodoRecorrido.getId() + " - " + 
             mascotaNodoRecorrido.getNombre() + 
             mascotaNodoRecorrido.getEspecie() + salto +
-            recorridoInordenABBRec(nodoRecorridoABB.getDerecho());
+            recorridoInOrdenABBRec(nodoRecorridoABB.getDerecho());
     }
 
     //Metodo para invocar el recorrido en la gui:
-    public String recorridoInordenGUi(){
-        return recorridoInordenABBRec(this.raiz).trim();//Ojo aca usamos el .trim() para evitar saltos de linea no esperados al utilizar el metodo recursivo de alli que los busquemos elimiar cuando se visualizan como espacios en blanco 
+    public String recorridoInOrdenGui(){
+        return recorridoInOrdenABBRec(this.raiz).trim();//Ojo aca usamos el .trim() para evitar saltos de linea no esperados al utilizar el metodo recursivo de alli que los busquemos elimiar cuando se visualizan como espacios en blanco 
     }
 }

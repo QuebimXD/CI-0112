@@ -1,13 +1,13 @@
 public class Veterinario{
     private ColaMascota cola;
-    //private ArbolMascota arbol;
+    private ArbolMascota arbol; 
 
     /**
      *En este constructor, instanciamos nuevos objetos de tipo ColaMascota, y ArbolMascota, que conforman a la clase Veterinario; va a tener estos dos atributos.
      */
     public Veterinario(){
         this.cola = new ColaMascota();
-        //this.arbol = new ArbolMascota();
+        this.arbol = new ArbolMascota();
     }
 
     /**
@@ -18,10 +18,15 @@ public class Veterinario{
      * @return a la mascota registrada en la cola y guardada en el arbol, null si la mascota ya se encuentra en el arbol, esto se verifica con el metodo de buscar a la mascota por la id.
      */
     public Mascota registrar(String nombre, int id, String especie){
+        if(arbol.buscarMascotaGui(id) != null){
+            return null;
+        }
+        
         Mascota nueva = new Mascota(id, nombre, especie);
         //Verificar q no se encuentre ya en el arbol
         
         cola.enqueue(nueva);
+        arbol.insertarGui(nueva);
         return nueva;
     }
    
@@ -60,11 +65,20 @@ public class Veterinario{
 
 
     //public ArbolMascota verHistorial(){
-
+    public String verHistoria(){
+        return arbol.recorridoInOrdenGui();
+    }
     
-
     //public ArbolMascota mostrarMascotas(){
+    public Mascota mostraraMascota(int id){
+        NodoMascotaABB nodoMascotaIdBuscada = buscarMascotaGui(id);
+        if(nodoMascotaIdBuscada != null){
+            return nodo.getDatoMascota();
+        } else {
+            return null; 
+        }
         
+    }
     
 
    
