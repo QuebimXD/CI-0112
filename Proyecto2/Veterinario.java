@@ -17,15 +17,17 @@ public class Veterinario{
      * @param especie la especie de la mascota que va a ser registrada.
      * @return a la mascota registrada en la cola y guardada en el arbol, null si la mascota ya se encuentra en el arbol, esto se verifica con el metodo de buscar a la mascota por la id.
      */
+
+    
+     
     public Mascota registrar(String nombre, int id, String especie){
+          //Verificamos que la mascota no se encuentre ya en el arbol
         if(arbol.buscarMascotaGui(id) != null){
             return null;
         }
         
         Mascota nueva = new Mascota(id, nombre, especie);
-        //Verificar q no se encuentre ya en el arbol
-        
-        cola.enqueue(nueva);
+     
         arbol.insertarGui(nueva);
         return nueva;
     }
@@ -50,11 +52,11 @@ public class Veterinario{
         return cola.mostrarCola();
     }
     
-
     /**
      * Este metodo funciona para mostrar a la mascota que se encuentra en la cabeza de la cola mediante el metodo peek de ColaMascota.
      * @return la mascota que se encuentra en la head.
      */
+
     public Mascota mostrarAtendida(){
         return cola.peek();
     }
@@ -70,17 +72,30 @@ public class Veterinario{
     }
     
     //public ArbolMascota mostrarMascotas(){
-    public Mascota mostraraMascota(int id){
-        NodoMascotaABB nodoMascotaIdBuscada = buscarMascotaGui(id);
+    public Mascota mostrarMascota(int id){
+        NodoMascotaABB nodoMascotaIdBuscada = arbol.buscarMascotaGui(id);
         if(nodoMascotaIdBuscada != null){
-            return nodo.getDatoMascota();
+            return nodoMascotaIdBuscada.getDatoMascota();
         } else {
             return null; 
         }
         
     }
-    
 
+    public void eliminarMascota(Mascota mascotaPorElim){
+        arbol.eliminarGui(mascotaPorElim);
+    }
+    
+    public NodoMascotaABB buscarMascotaArbol(int idArbol){
+        return arbol.buscarMascotaGui(idArbol);
+    }
+
+    public boolean arbolVacio(){
+        if(arbol.estaVacio()){
+            return true;
+        }
+        return false; 
+    }
    
 
 }

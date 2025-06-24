@@ -1,7 +1,7 @@
 public class ArbolMascota{
     private NodoMascotaABB raiz; 
-    public ArbolMascota(Mascota datoMascota){//Aca establecemos el nodo raiz del arbol.
-        this.raiz = new NodoMascotaABB(datoMascota);
+    public ArbolMascota(){//Aca establecemos el nodo raiz del arbol.
+        this.raiz = null;
     }
     private NodoMascotaABB insertarMascotaRec(Mascota datoMascota, NodoMascotaABB nodoMascotaABB){//Aca estamos basicamente creando el arbol binario, para que se recorra a partir del id de las mascotas. 
         if(nodoMascotaABB== null){
@@ -64,7 +64,7 @@ public class ArbolMascota{
 
     //Metodo de buscar mascotas por nombre, en este caso lo voy a realizar por el id pues es como ordene el arbol (tengo el visto bueno por el profe :)): 
     private NodoMascotaABB buscarMascotaIdABBRec(Mascota datoMascota, NodoMascotaABB nodoMascotaBuscadaABB){
-        if(nodoMascotaBuscadaABB == null){
+        if(nodoMascotaBuscadaABB == null || nodoMascotaBuscadaABB.getDatoMascota() == null){
             return null; 
         }else if(datoMascota.getId() == nodoMascotaBuscadaABB.getDatoMascota().getId()){
             return nodoMascotaBuscadaABB;
@@ -91,16 +91,22 @@ public class ArbolMascota{
         
         Mascota mascotaNodoRecorrido = nodoRecorridoABB.getDatoMascota();
         
-        String salto = System.lineSeparator();
+        String salto = "\n";
         return recorridoInOrdenABBRec(nodoRecorridoABB.getIzquierdo()) +
-            mascotaNodoRecorrido.getId() + " - " + 
-            mascotaNodoRecorrido.getNombre() + 
-            mascotaNodoRecorrido.getEspecie() + salto +
+            "------------------------------------" + salto +
+            " Id: " + mascotaNodoRecorrido.getId() + salto + 
+            " Nombre: " + mascotaNodoRecorrido.getNombre() + salto + 
+            " Especie: " + mascotaNodoRecorrido.getEspecie() + salto +
             recorridoInOrdenABBRec(nodoRecorridoABB.getDerecho());
     }
 
     //Metodo para invocar el recorrido en la gui:
     public String recorridoInOrdenGui(){
-        return recorridoInOrdenABBRec(this.raiz).trim();//Ojo aca usamos el .trim() para evitar saltos de linea no esperados al utilizar el metodo recursivo de alli que los busquemos elimiar cuando se visualizan como espacios en blanco 
+        return recorridoInOrdenABBRec(this.raiz);//Ojo aca usamos el .trim() para evitar saltos de linea no esperados al utilizar el metodo recursivo de alli que los busquemos elimiar cuando se visualizan como espacios en blanco 
+    }
+
+    //Metodo para saber si el arbol esta vacio:
+    public boolean estaVacio() {
+        return this.raiz == null;
     }
 }

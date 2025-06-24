@@ -6,6 +6,7 @@ public class NodoMascotaABB{
         this.datoMascota= datoMascota;
         this.derecho= this.izquierdo = null; 
     }
+    
     //Getters:
      public Mascota getDatoMascota(){
         return this.datoMascota; 

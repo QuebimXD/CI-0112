@@ -18,9 +18,6 @@ public class Mascota{
     public String getEspecie(){
         return especie;
     }
-    public void setId(int id){
-        this.id = id;
-    }
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
