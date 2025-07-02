@@ -109,4 +109,8 @@ public class ArbolMascota{
     public boolean estaVacio() {
         return this.raiz == null;
     }
+
+    public NodoMascotaABB getRaiz(){
+        return this.raiz;
+    }
 }

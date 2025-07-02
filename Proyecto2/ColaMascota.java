@@ -94,4 +94,20 @@ public class ColaMascota{
         return "Nombre:" + mascota.getNombre() + " | Id: " + mascota.getId() + " | Especie: " + mascota.getEspecie() + "\n" + recursivo(nodo.getSiguiente());
     }
     
+    /**
+     * Este metodo verifica si la mascota se encuentra o no en la cola
+     * @param mascota la mascota a verificar en la cola de la mascota.
+     * @return true si la mascota de la cabeza de la cola existe, false si no.
+     */
+
+     public boolean contiene(Mascota mascota){
+        NodoMascotaCola actual = head;
+        while(actual != null){
+            if(actual.getMascota().getId() == mascota.getId()){
+                return true;
+            }
+        actual = actual.getSiguiente();
+        }
+        return false;
+     }
 }
