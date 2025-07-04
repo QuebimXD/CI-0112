@@ -85,7 +85,6 @@ public class ColaMascota{
     /**
      * Este es el metodo recursivo. El caso base es cuando un mascota (nodo) en la cola es vacia, se acaba el metodo.
      * @return todos los datos de todas las mascotas presentes en la cola. Null si llega al caso base, o que directamente la cola este vacia.
-     * @param nodo el nodo que va a retornar.
      */
     private String recursivo(NodoMascotaCola nodo){
         if (nodo == null){
