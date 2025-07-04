@@ -1,14 +1,23 @@
 import javax.swing.*;
 import java.awt.*;
- 
+ /**
+  * Esta clase genera la interfaz grafica, que se encarga de correr todo el programa
+  * Instanciamos un objeto veterinario de la clase Veterinario.
+  * instanciamos los cuadros de texto de la cola y el arbol.
+  * Instanciamos los colores de las lineas y paneles, que son gris y azul pastel.
+  */
 public class InterfazGrafica extends JFrame{
     private Veterinario veterinario = new Veterinario();
     private JTextArea areaTextoCola;
     private JTextArea areaTextoArbol; 
     Color fondoLineas = new Color(230, 240, 240); //Color gris
-    Color fondoPaneles = new Color(174, 198, 207); //Color Azul pasel
+    Color fondoPaneles = new Color(174, 198, 207); //Color Azul pastel
 
-    //El constructor donde va todo el asunto.
+    /*
+     * El constructor de la GUI, donde todos los elementos se ingresan.
+     * Se agrega el titulo, el tamaño de la interfaz, la funcion de detener el programa cuando se clickea la x, y se agrega el color de las lineas a la ventana principal.
+     */
+
     public InterfazGrafica(){ 
         setTitle("Clinica Veterinaria");
         setSize(1200, 400);
@@ -17,6 +26,14 @@ public class InterfazGrafica extends JFrame{
         getContentPane().setBackground(fondoLineas); //Metodo para agregarle el color a la ventana principal.
 
         //PANEL PRINCIPAL (De manera horizontal)
+
+        /**
+         * El orden de los paneles va asi: Primero se instancia el panel principal con su contenido.
+         * Despues, se declaran los tres principales paneles: Registro de datos, Arbol y Cola.
+         * Entre la instancia de cada panel, se agregan todos los elementos y funciones de los mismos; caracteristicas del panel, la logica de los botones.
+         * Al final de declarar los elementos, se agregan a cada respectivo panel.
+         * Por ultimo, se agregan los tres paneles al panel principal.
+         */
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.X_AXIS));
